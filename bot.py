@@ -10,7 +10,9 @@ ANTHROPIC_KEY = os.environ.get("ANTHROPIC_KEY")
 SHEET_ID = os.environ.get("SHEET_ID")
 
 # === เชื่อม Google Sheet ===
-gc = gspread.service_account(filename="credentials.json")
+import json
+credentials_json = json.loads(os.environ.get("GOOGLE_CREDENTIALS"))
+gc = gspread.service_account_from_dict(credentials_json)
 sheet = gc.open_by_key(SHEET_ID).sheet1
 
 # === เชื่อม Claude ===
