@@ -11,7 +11,8 @@ SHEET_ID = os.environ.get("SHEET_ID")
 
 # === เชื่อม Google Sheet ===
 import json
-credentials_json = json.loads(os.environ.get("GOOGLE_CREDENTIALS"))credentials_json["private_key"] = credentials_json["private_key"].replace("\\n", "\n")
+credentials_json = json.loads(os.environ.get("GOOGLE_CREDENTIALS"))
+credentials_json["private_key"] = credentials_json["private_key"].replace("\\n", "\n")
 gc = gspread.service_account_from_dict(credentials_json)
 sheet = gc.open_by_key(SHEET_ID).sheet1
 
